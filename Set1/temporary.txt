@@ -1,0 +1,41 @@
+def findpossiblekeysize(cipherascii):
+	keysizes = []
+	sum = 0
+	avg = 0
+	for size in range(2,41):
+		blocks = []
+		blocks.append(cipherascii[0:size])
+		blocks.append(cipherascii[size:2*size])
+		blocks.append(cipherascii[2*size:3*size])
+		blocks.append(cipherascii[3*size:4*size])
+		#keysizes.append( geteditdist(blocka,blockb) / i )
+		
+	keysizes = list(set(keysizes))
+	for i in range(4):
+		minm = min(keysizes)
+		keysizes.remove(minm)
+		sum += minm
+	avg = sum / 4
+	return avg
+	
+	
+	#for each collection of hexblocks (keysize amount)
+	for i in range(len(hexblocks)):
+		if (checkenglish(ordered[i],60)):
+			#print asciitotext(transposed[i])
+			#print "xor'ed with: "+chr(j)+" is:"
+			#print asciitotext(ordered[i][j])
+			completekey += chr(j)
+			
+#returns a list of lists, with each list containing 256 numbers representing
+#all possible xors for each character
+def scxbrute(ascii_value_list):
+	allxors = [];
+	#for every ascii value
+	for i in range(256):
+		singlexor = []
+		for ascval in range( len(ascii_value_list) ):
+			#xor it with 0..127
+			singlexor.append(xor(ascii_value_list[ascval],i))
+		allxors.append(singlexor)		
+	return allxors
